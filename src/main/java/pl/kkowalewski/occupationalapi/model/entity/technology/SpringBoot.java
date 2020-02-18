@@ -1,4 +1,4 @@
-package pl.kkowalewski.occupationalapi.model.technology;
+package pl.kkowalewski.occupationalapi.model.entity.technology;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,15 +11,15 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-public class React extends Technology {
+public class SpringBoot extends Technology {
 
     /*------------------------ FIELDS REGION ------------------------*/
 
     /*------------------------ METHODS REGION ------------------------*/
-    public React() {
+    public SpringBoot() {
     }
 
-    public React(String name, LocalDate releaseDate, Type type) {
+    public SpringBoot(String name, LocalDate releaseDate, Type type) {
         super(name, releaseDate, type);
     }
 }

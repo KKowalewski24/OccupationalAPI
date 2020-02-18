@@ -1,9 +1,9 @@
-package pl.kkowalewski.occupationalapi.model.developer;
+package pl.kkowalewski.occupationalapi.model.entity.developer;
 
 import lombok.Getter;
 import lombok.Setter;
 import pl.kkowalewski.occupationalapi.model.base.Person;
-import pl.kkowalewski.occupationalapi.model.client.Client;
+import pl.kkowalewski.occupationalapi.model.entity.client.Client;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -16,6 +16,7 @@ import java.util.List;
 public class Developer extends Person {
 
     /*------------------------ FIELDS REGION ------------------------*/
+    //    TODO ADD PARAMETERS TO RELATION
     @OneToMany
     private List<Client> clientList;
 

@@ -1,9 +1,9 @@
-package pl.kkowalewski.occupationalapi.model.client;
+package pl.kkowalewski.occupationalapi.model.entity.client;
 
 import lombok.Getter;
 import lombok.Setter;
 import pl.kkowalewski.occupationalapi.model.base.Person;
-import pl.kkowalewski.occupationalapi.model.developer.Developer;
+import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -15,6 +15,7 @@ import java.time.LocalDate;
 public class Client extends Person {
 
     /*------------------------ FIELDS REGION ------------------------*/
+    //    TODO ADD PARAMETERS TO RELATION
     @ManyToOne
     private Developer developer;
 
