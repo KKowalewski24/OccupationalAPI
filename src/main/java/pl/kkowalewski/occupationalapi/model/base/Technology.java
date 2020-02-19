@@ -1,6 +1,7 @@
 package pl.kkowalewski.occupationalapi.model.base;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity
 public abstract class Technology extends BaseEntity {
@@ -23,9 +25,6 @@ public abstract class Technology extends BaseEntity {
     private Type type;
 
     /*------------------------ METHODS REGION ------------------------*/
-    public Technology() {
-    }
-
     public Technology(String name, LocalDate releaseDate, Type type) {
         this.name = name;
         this.releaseDate = releaseDate;

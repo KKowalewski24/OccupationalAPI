@@ -1,6 +1,7 @@
 package pl.kkowalewski.occupationalapi.model.entity.technology;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.kkowalewski.occupationalapi.model.base.Technology;
 import pl.kkowalewski.occupationalapi.model.base.Type;
@@ -10,15 +11,13 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 public class SpringBoot extends Technology {
 
     /*------------------------ FIELDS REGION ------------------------*/
 
     /*------------------------ METHODS REGION ------------------------*/
-    public SpringBoot() {
-    }
-
     public SpringBoot(String name, LocalDate releaseDate, Type type) {
         super(name, releaseDate, type);
     }

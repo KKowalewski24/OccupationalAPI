@@ -1,6 +1,7 @@
 package pl.kkowalewski.occupationalapi.model.entity.client;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity(name = "clients")
 public class Client extends Person {
 
@@ -25,9 +27,6 @@ public class Client extends Person {
     private Developer developer;
 
     /*------------------------ METHODS REGION ------------------------*/
-    public Client() {
-    }
-
     public Client(String firstName, String lastName, LocalDate birthDate) {
         super(firstName, lastName, birthDate);
     }
