@@ -10,20 +10,20 @@ import pl.kkowalewski.occupationalapi.model.base.Person;
 import pl.kkowalewski.occupationalapi.model.entity.client.Client;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.List;
 
+import static pl.kkowalewski.occupationalapi.constant.Constants.LOWER_CASE_DEVELOPER;
+
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "developers")
+@Entity
 public class Developer extends Person {
 
     /*------------------------ FIELDS REGION ------------------------*/
-    // TODO CHECK IF CORRECT
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "developer")
+    @OneToMany(mappedBy = LOWER_CASE_DEVELOPER)
     private List<Client> clientList;
 
     /*------------------------ METHODS REGION ------------------------*/

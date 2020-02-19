@@ -10,20 +10,26 @@ import pl.kkowalewski.occupationalapi.model.base.Person;
 import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
 
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
+import static pl.kkowalewski.occupationalapi.constant.Constants.LOWER_CASE_CLIENT;
+import static pl.kkowalewski.occupationalapi.constant.Constants.LOWER_CASE_DEVELOPER;
+import static pl.kkowalewski.occupationalapi.constant.Constants.UNDERSCORE_FK;
+import static pl.kkowalewski.occupationalapi.constant.Constants.UNDERSCORE_ID;
+
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "clients")
+@Entity(name = LOWER_CASE_CLIENT)
 public class Client extends Person {
 
     /*------------------------ FIELDS REGION ------------------------*/
-    // TODO CHECK IF CORRECT
     @ManyToOne
-    @JoinColumn(name = "developer_id")
+    @JoinColumn(name = LOWER_CASE_DEVELOPER + UNDERSCORE_ID,
+            foreignKey = @ForeignKey(name = LOWER_CASE_DEVELOPER + UNDERSCORE_ID + UNDERSCORE_FK))
     private Developer developer;
 
     /*------------------------ METHODS REGION ------------------------*/

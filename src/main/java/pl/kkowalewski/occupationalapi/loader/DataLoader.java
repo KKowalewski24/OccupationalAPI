@@ -14,6 +14,7 @@ import pl.kkowalewski.occupationalapi.repository.ClientRepository;
 import pl.kkowalewski.occupationalapi.repository.DeveloperRepository;
 import pl.kkowalewski.occupationalapi.repository.TechnologyRepository;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -54,6 +55,7 @@ public class DataLoader implements CommandLineRunner {
         return technology;
     }
 
+    @Transactional
     @Override
     public void run(String... args) throws Exception {
         prepareTechnology(new React("abc", LocalDate.now(), Type.FRONT_END));
