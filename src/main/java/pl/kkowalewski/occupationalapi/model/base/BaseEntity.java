@@ -1,6 +1,7 @@
 package pl.kkowalewski.occupationalapi.model.base;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -14,6 +15,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 
@@ -23,9 +25,6 @@ public abstract class BaseEntity implements Serializable {
     private Long id;
 
     /*------------------------ METHODS REGION ------------------------*/
-    public BaseEntity() {
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
