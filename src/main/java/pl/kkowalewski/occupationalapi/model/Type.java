@@ -1,4 +1,4 @@
-package pl.kkowalewski.occupationalapi.model.base;
+package pl.kkowalewski.occupationalapi.model;
 
 public enum Type {
     FRONT_END("Front-end"),

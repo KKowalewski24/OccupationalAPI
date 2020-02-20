@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.kkowalewski.occupationalapi.model.base.Technology;
-import pl.kkowalewski.occupationalapi.model.base.Type;
+import pl.kkowalewski.occupationalapi.model.Type;
 import pl.kkowalewski.occupationalapi.model.entity.client.Client;
 import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
 import pl.kkowalewski.occupationalapi.model.entity.technology.AspNetCore;

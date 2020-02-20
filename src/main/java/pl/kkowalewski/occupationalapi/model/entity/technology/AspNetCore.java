@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.kkowalewski.occupationalapi.model.base.Technology;
-import pl.kkowalewski.occupationalapi.model.base.Type;
+import pl.kkowalewski.occupationalapi.model.Type;
 
 import javax.persistence.Entity;
 import java.time.LocalDate;
