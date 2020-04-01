@@ -1,6 +1,7 @@
 package pl.kkowalewski.occupationalapi.model;
 
 public enum Type {
+
     FRONT_END("Front-end"),
     BACK_END("Back-end");
 

@@ -2,9 +2,10 @@ package pl.kkowalewski.occupationalapi.loader;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
-import pl.kkowalewski.occupationalapi.model.base.Technology;
 import pl.kkowalewski.occupationalapi.model.Type;
+import pl.kkowalewski.occupationalapi.model.base.Technology;
 import pl.kkowalewski.occupationalapi.model.entity.client.Client;
 import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
 import pl.kkowalewski.occupationalapi.model.entity.technology.AspNetCore;
@@ -16,8 +17,10 @@ import pl.kkowalewski.occupationalapi.repository.TechnologyRepository;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @Slf4j
 @Component
@@ -55,6 +58,13 @@ public class DataLoader implements CommandLineRunner {
         return technology;
     }
 
+    private <T extends CrudRepository> void printCollection(T repository) {
+        repository.findAll().forEach((it) -> System.out.println(it.toString()));
+        System.out.println(StreamSupport.stream(repository
+                .findAll().spliterator(), false).count());
+        System.out.println("--------------------------------------------");
+    }
+
     @Transactional
     @Override
     public void run(String... args) throws Exception {
@@ -74,12 +84,12 @@ public class DataLoader implements CommandLineRunner {
         Client client4 = prepareClient(new Client("ggg", "hhh",
                 LocalDate.of(1969, 9, 21), developer1));
 
-        developer1.setClientList(Stream.of(client1, client2, client3, client4)
-                .collect(Collectors.toList()));
+        developer1.setClients(Stream.of(client1, client2, client3, client4)
+                .collect(Collectors.toCollection(HashSet::new)));
 
-        technologyRepository.findAll().forEach((it) -> System.out.println(it.toString()));
-        clientRepository.findAll().forEach((it) -> System.out.println(it.toString()));
-        developerRepository.findAll().forEach((it) -> System.out.println(it.toString()));
+        this.<CrudRepository>printCollection(technologyRepository);
+        this.<CrudRepository>printCollection(clientRepository);
+        this.<CrudRepository>printCollection(developerRepository);
+
     }
 }
-    

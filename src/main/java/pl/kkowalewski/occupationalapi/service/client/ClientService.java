@@ -1,4 +1,13 @@
 package pl.kkowalewski.occupationalapi.service.client;
 
-public interface ClientService {
+import pl.kkowalewski.occupationalapi.model.entity.client.Client;
+import pl.kkowalewski.occupationalapi.service.BaseService;
+
+public interface ClientService extends BaseService<Client> {
+
+    Client findByFirstName(String firstName);
+
+    Client findByLastName(String lastName);
+
+    Client findByFullName(String firstName, String lastName);
 }
