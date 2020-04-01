@@ -2,6 +2,7 @@ package pl.kkowalewski.occupationalapi.service.client;
 
 import org.springframework.stereotype.Service;
 import pl.kkowalewski.occupationalapi.model.entity.client.Client;
+import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
 import pl.kkowalewski.occupationalapi.repository.ClientRepository;
 
 import java.util.Set;
@@ -15,6 +16,21 @@ public class ClientServiceImpl implements ClientService {
     /*------------------------ METHODS REGION ------------------------*/
     public ClientServiceImpl(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
+    }
+
+    @Override
+    public Developer findByFirstName(String firstName) {
+        return null;
+    }
+
+    @Override
+    public Developer findByLastName(String lastName) {
+        return null;
+    }
+
+    @Override
+    public Developer findByFullName(String firstName, String lastName) {
+        return null;
     }
 
     @Override

@@ -3,8 +3,8 @@ package pl.kkowalewski.occupationalapi.model.entity.technology;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.kkowalewski.occupationalapi.model.base.Technology;
 import pl.kkowalewski.occupationalapi.model.Type;
+import pl.kkowalewski.occupationalapi.model.base.Technology;
 
 import javax.persistence.Entity;
 import java.time.LocalDate;

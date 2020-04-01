@@ -1,6 +1,7 @@
 package pl.kkowalewski.occupationalapi.service.technology;
 
 import org.springframework.stereotype.Service;
+import pl.kkowalewski.occupationalapi.model.Type;
 import pl.kkowalewski.occupationalapi.model.base.Technology;
 import pl.kkowalewski.occupationalapi.repository.TechnologyRepository;
 
@@ -16,6 +17,16 @@ public class TechnologyServiceImpl implements TechnologyService {
     /*------------------------ METHODS REGION ------------------------*/
     public TechnologyServiceImpl(TechnologyRepository technologyRepository) {
         this.technologyRepository = technologyRepository;
+    }
+
+    @Override
+    public Technology findByName(String name) {
+        return null;
+    }
+
+    @Override
+    public Technology findByType(Type type) {
+        return null;
     }
 
     @Override

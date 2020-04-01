@@ -18,6 +18,21 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
+    public Developer findByFirstName(String firstName) {
+        return null;
+    }
+
+    @Override
+    public Developer findByLastName(String lastName) {
+        return null;
+    }
+
+    @Override
+    public Developer findByFullName(String firstName, String lastName) {
+        return null;
+    }
+
+    @Override
     public Developer findById(Long id) {
         return null;
     }
