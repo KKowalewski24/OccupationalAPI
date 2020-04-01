@@ -19,12 +19,12 @@ import static pl.kkowalewski.occupationalapi.constant.Constants.LOWER_CASE_DEVEL
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
+@Entity(name = LOWER_CASE_DEVELOPER)
 public class Developer extends Person {
 
     /*------------------------ FIELDS REGION ------------------------*/
     @OneToMany(mappedBy = LOWER_CASE_DEVELOPER)
-    private List<Client> clientList;
+    private List<Client> clients;
 
     /*------------------------ METHODS REGION ------------------------*/
     public Developer(String firstName, String lastName, LocalDate birthDate) {
@@ -32,9 +32,9 @@ public class Developer extends Person {
     }
 
     public Developer(String firstName, String lastName, LocalDate birthDate,
-                     List<Client> clientList) {
+                     List<Client> clients) {
         super(firstName, lastName, birthDate);
-        this.clientList = clientList;
+        this.clients = clients;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Developer extends Person {
 
         return new EqualsBuilder()
                 .appendSuper(super.equals(o))
-                .append(clientList, developer.clientList)
+                .append(clients, developer.clients)
                 .isEquals();
     }
 
@@ -59,7 +59,7 @@ public class Developer extends Person {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .appendSuper(super.hashCode())
-                .append(clientList)
+                .append(clients)
                 .toHashCode();
     }
 
@@ -67,7 +67,7 @@ public class Developer extends Person {
     public String toString() {
         return new ToStringBuilder(this)
                 .appendSuper(super.toString())
-                .append("clientList", clientList)
+                .append("clients", clients)
                 .toString();
     }
 }

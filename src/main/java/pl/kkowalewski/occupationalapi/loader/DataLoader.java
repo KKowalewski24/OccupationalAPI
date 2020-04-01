@@ -3,8 +3,8 @@ package pl.kkowalewski.occupationalapi.loader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import pl.kkowalewski.occupationalapi.model.base.Technology;
 import pl.kkowalewski.occupationalapi.model.Type;
+import pl.kkowalewski.occupationalapi.model.base.Technology;
 import pl.kkowalewski.occupationalapi.model.entity.client.Client;
 import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
 import pl.kkowalewski.occupationalapi.model.entity.technology.AspNetCore;
@@ -16,6 +16,7 @@ import pl.kkowalewski.occupationalapi.repository.TechnologyRepository;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -74,8 +75,8 @@ public class DataLoader implements CommandLineRunner {
         Client client4 = prepareClient(new Client("ggg", "hhh",
                 LocalDate.of(1969, 9, 21), developer1));
 
-        developer1.setClientList(Stream.of(client1, client2, client3, client4)
-                .collect(Collectors.toList()));
+        developer1.setClients(Stream.of(client1, client2, client3, client4)
+                .collect(Collectors.toCollection(ArrayList::new)));
 
         technologyRepository.findAll().forEach((it) -> System.out.println(it.toString()));
         clientRepository.findAll().forEach((it) -> System.out.println(it.toString()));
