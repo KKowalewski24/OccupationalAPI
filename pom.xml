@@ -22,7 +22,7 @@
         <java.version>11</java.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
         <encoding>UTF-8</encoding>
-        <checkstyle.version>8.22</checkstyle.version>
+        <checkstyle.version>8.29</checkstyle.version>
         <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
         <springfox-swagger.version>2.9.2</springfox-swagger.version>
     </properties>
