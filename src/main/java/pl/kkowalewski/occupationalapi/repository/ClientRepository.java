@@ -10,10 +10,10 @@ import java.util.Optional;
 @Repository
 public interface ClientRepository extends CrudRepository<Client, Long> {
 
-    Optional<Developer> findByFirstName();
+    Optional<Developer> findByFirstName(String firstName);
 
-    Optional<Developer> findByLastName();
+    Optional<Developer> findByLastName(String lastName);
 
-    Optional<Developer> findByFirstNameAndLastName();
+    Optional<Developer> findByFirstNameAndLastName(String firstName, String lastName);
 }
     
