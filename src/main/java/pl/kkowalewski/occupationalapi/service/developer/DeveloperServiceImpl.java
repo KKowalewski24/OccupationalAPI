@@ -3,6 +3,7 @@ package pl.kkowalewski.occupationalapi.service.developer;
 import org.springframework.stereotype.Service;
 import pl.kkowalewski.occupationalapi.exception.service.DeveloperNotFoundException;
 import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
+import pl.kkowalewski.occupationalapi.repository.ClientRepository;
 import pl.kkowalewski.occupationalapi.repository.DeveloperRepository;
 
 import java.util.HashSet;
@@ -15,11 +16,13 @@ import java.util.stream.StreamSupport;
 public class DeveloperServiceImpl implements DeveloperService {
 
     /*------------------------ FIELDS REGION ------------------------*/
+    private final ClientRepository clientRepository;
     private final DeveloperRepository developerRepository;
 
-    //TODO ADD IMPL
     /*------------------------ METHODS REGION ------------------------*/
-    public DeveloperServiceImpl(DeveloperRepository developerRepository) {
+    public DeveloperServiceImpl(ClientRepository clientRepository,
+                                DeveloperRepository developerRepository) {
+        this.clientRepository = clientRepository;
         this.developerRepository = developerRepository;
     }
 

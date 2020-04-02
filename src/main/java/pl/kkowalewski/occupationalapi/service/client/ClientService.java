@@ -10,4 +10,9 @@ public interface ClientService extends BaseService<Client> {
     Client findByLastName(String lastName);
 
     Client findByFullName(String firstName, String lastName);
+
+    Client findByClientIdAndDeveloperId(Long clientId, Long developerId);
+
+    Client findByClientLastNameAndDeveloperLastName(String clientLastName,
+                                                    String developerLastName);
 }
