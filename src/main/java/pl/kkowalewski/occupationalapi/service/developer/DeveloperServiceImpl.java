@@ -5,8 +5,11 @@ import pl.kkowalewski.occupationalapi.exception.service.DeveloperNotFoundExcepti
 import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
 import pl.kkowalewski.occupationalapi.repository.DeveloperRepository;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class DeveloperServiceImpl implements DeveloperService {
@@ -70,27 +73,29 @@ public class DeveloperServiceImpl implements DeveloperService {
 
     @Override
     public Set<Developer> findAll() {
-        return null;
+        return StreamSupport
+                .stream(developerRepository.findAll().spliterator(), false)
+                .collect(Collectors.toCollection(HashSet::new));
     }
 
     @Override
     public Developer save(Developer object) {
-        return null;
+        return developerRepository.save(object);
     }
 
     @Override
     public void deleteById(Long id) {
-
+        developerRepository.deleteById(id);
     }
 
     @Override
     public void delete(Developer object) {
-
+        developerRepository.delete(object);
     }
 
     @Override
     public void deleteAll() {
-
+        developerRepository.deleteAll();
     }
 }
     

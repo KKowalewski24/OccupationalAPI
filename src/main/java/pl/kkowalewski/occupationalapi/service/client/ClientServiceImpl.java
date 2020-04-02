@@ -8,6 +8,8 @@ import pl.kkowalewski.occupationalapi.repository.ClientRepository;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -69,24 +71,24 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Set<Client> findAll() {
-        Set<Client> clients = new HashSet<>();
-
-        return null;
+        return StreamSupport
+                .stream(clientRepository.findAll().spliterator(), false)
+                .collect(Collectors.toCollection(HashSet::new));
     }
 
     @Override
     public Client save(Client object) {
-        return null;
+        return clientRepository.save(object);
     }
 
     @Override
     public void deleteById(Long id) {
-
+        clientRepository.deleteById(id);
     }
 
     @Override
     public void delete(Client object) {
-
+        clientRepository.delete(object);
     }
 
     @Override
