@@ -3,20 +3,26 @@ package pl.kkowalewski.occupationalapi.service.developer;
 import org.springframework.stereotype.Service;
 import pl.kkowalewski.occupationalapi.exception.service.DeveloperNotFoundException;
 import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
+import pl.kkowalewski.occupationalapi.repository.ClientRepository;
 import pl.kkowalewski.occupationalapi.repository.DeveloperRepository;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class DeveloperServiceImpl implements DeveloperService {
 
     /*------------------------ FIELDS REGION ------------------------*/
+    private final ClientRepository clientRepository;
     private final DeveloperRepository developerRepository;
 
-    //TODO ADD IMPL
     /*------------------------ METHODS REGION ------------------------*/
-    public DeveloperServiceImpl(DeveloperRepository developerRepository) {
+    public DeveloperServiceImpl(ClientRepository clientRepository,
+                                DeveloperRepository developerRepository) {
+        this.clientRepository = clientRepository;
         this.developerRepository = developerRepository;
     }
 
@@ -70,27 +76,29 @@ public class DeveloperServiceImpl implements DeveloperService {
 
     @Override
     public Set<Developer> findAll() {
-        return null;
+        return StreamSupport
+                .stream(developerRepository.findAll().spliterator(), false)
+                .collect(Collectors.toCollection(HashSet::new));
     }
 
     @Override
     public Developer save(Developer object) {
-        return null;
+        return developerRepository.save(object);
     }
 
     @Override
     public void deleteById(Long id) {
-
+        developerRepository.deleteById(id);
     }
 
     @Override
     public void delete(Developer object) {
-
+        developerRepository.delete(object);
     }
 
     @Override
     public void deleteAll() {
-
+        developerRepository.deleteAll();
     }
 }
     
