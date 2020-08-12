@@ -1,8 +1,5 @@
 package pl.kkowalewski.occupationalapi.model.entity.client;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -20,9 +17,6 @@ import static pl.kkowalewski.occupationalapi.constant.Constants.LOWER_CASE_DEVEL
 import static pl.kkowalewski.occupationalapi.constant.Constants.UNDERSCORE_FK;
 import static pl.kkowalewski.occupationalapi.constant.Constants.UNDERSCORE_ID;
 
-@Getter
-@Setter
-@NoArgsConstructor
 @Entity(name = LOWER_CASE_CLIENT)
 public class Client extends Person {
 
@@ -33,12 +27,23 @@ public class Client extends Person {
     private Developer developer;
 
     /*------------------------ METHODS REGION ------------------------*/
+    public Client() {
+    }
+
     public Client(String firstName, String lastName, LocalDate birthDate) {
         super(firstName, lastName, birthDate);
     }
 
     public Client(String firstName, String lastName, LocalDate birthDate, Developer developer) {
         super(firstName, lastName, birthDate);
+        this.developer = developer;
+    }
+
+    public Developer getDeveloper() {
+        return developer;
+    }
+
+    public void setDeveloper(Developer developer) {
         this.developer = developer;
     }
 
@@ -76,4 +81,3 @@ public class Client extends Person {
                 .toString();
     }
 }
-    

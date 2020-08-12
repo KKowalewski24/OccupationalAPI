@@ -1,6 +1,5 @@
 package pl.kkowalewski.occupationalapi.loader;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.kkowalewski.occupationalapi.model.Type;
@@ -21,7 +20,6 @@ import java.util.HashSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
 
