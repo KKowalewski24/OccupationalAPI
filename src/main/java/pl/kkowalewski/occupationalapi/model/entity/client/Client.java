@@ -1,5 +1,6 @@
 package pl.kkowalewski.occupationalapi.model.entity.client;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -21,6 +22,7 @@ import static pl.kkowalewski.occupationalapi.constant.Constants.UNDERSCORE_ID;
 public class Client extends Person {
 
     /*------------------------ FIELDS REGION ------------------------*/
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = LOWER_CASE_DEVELOPER + UNDERSCORE_ID,
             foreignKey = @ForeignKey(name = LOWER_CASE_DEVELOPER + UNDERSCORE_ID + UNDERSCORE_FK))

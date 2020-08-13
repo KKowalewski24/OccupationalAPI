@@ -1,5 +1,6 @@
 package pl.kkowalewski.occupationalapi.model.entity.developer;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import pl.kkowalewski.occupationalapi.model.base.Person;
 import pl.kkowalewski.occupationalapi.model.entity.client.Client;
@@ -15,6 +16,7 @@ import static pl.kkowalewski.occupationalapi.constant.Constants.LOWER_CASE_DEVEL
 public class Developer extends Person {
 
     /*------------------------ FIELDS REGION ------------------------*/
+    @JsonManagedReference
     @OneToMany(mappedBy = LOWER_CASE_DEVELOPER)
     private Set<Client> clients;
 
