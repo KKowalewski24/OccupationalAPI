@@ -5,4 +5,6 @@ import java.util.Set;
 public interface BaseController<T> {
 
     Set<T> getAll();
+
+    T getById(Long id);
 }
