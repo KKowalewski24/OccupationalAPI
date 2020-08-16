@@ -1,8 +1,6 @@
 package pl.kkowalewski.occupationalapi.model.entity.client;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import pl.kkowalewski.occupationalapi.model.base.Person;
 import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
@@ -47,32 +45,6 @@ public class Client extends Person {
 
     public void setDeveloper(Developer developer) {
         this.developer = developer;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Client client = (Client) o;
-
-        return new EqualsBuilder()
-                .appendSuper(super.equals(o))
-                .append(developer, client.developer)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .appendSuper(super.hashCode())
-                .append(developer)
-                .toHashCode();
     }
 
     @Override

@@ -5,6 +5,7 @@ import pl.kkowalewski.occupationalapi.exception.service.TechnologyNotFoundExcept
 import pl.kkowalewski.occupationalapi.model.Type;
 import pl.kkowalewski.occupationalapi.model.base.Technology;
 import pl.kkowalewski.occupationalapi.repository.TechnologyRepository;
+import pl.kkowalewski.occupationalapi.service.developer.DeveloperService;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -17,10 +18,13 @@ public class TechnologyServiceImpl implements TechnologyService {
 
     /*------------------------ FIELDS REGION ------------------------*/
     private final TechnologyRepository technologyRepository;
+    private final DeveloperService developerService;
 
     /*------------------------ METHODS REGION ------------------------*/
-    public TechnologyServiceImpl(TechnologyRepository technologyRepository) {
+    public TechnologyServiceImpl(TechnologyRepository technologyRepository,
+                                 DeveloperService developerService) {
         this.technologyRepository = technologyRepository;
+        this.developerService = developerService;
     }
 
     @Override
@@ -83,16 +87,25 @@ public class TechnologyServiceImpl implements TechnologyService {
 
     @Override
     public void deleteById(Long id) {
+        Technology technology = findById(id);
+        deleteTechnologyDeveloper(technology);
         technologyRepository.deleteById(id);
     }
 
     @Override
     public void delete(Technology object) {
+        Technology technology = findById(object.getId());
+        deleteTechnologyDeveloper(technology);
         technologyRepository.delete(object);
     }
 
     @Override
     public void deleteAll() {
+        developerService.deleteAll();
         technologyRepository.deleteAll();
+    }
+
+    private void deleteTechnologyDeveloper(Technology technology) {
+        developerService.deleteById(technology.getDeveloper().getId());
     }
 }

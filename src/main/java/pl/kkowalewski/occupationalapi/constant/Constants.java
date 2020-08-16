@@ -12,6 +12,7 @@ public class Constants {
     public static final String UNDERSCORE_FK = "_fk";
     public static final String LOWER_CASE_DEVELOPER = "developer";
     public static final String LOWER_CASE_CLIENT = "client";
+    public static final String LOWER_CASE_TECHNOLOGY = "technology";
 
     public static final String PATH_HOME = "";
     public static final String SLASH = "/";

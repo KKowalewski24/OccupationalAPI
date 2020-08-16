@@ -1,14 +1,17 @@
 package pl.kkowalewski.occupationalapi.model.base;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import pl.kkowalewski.occupationalapi.model.Type;
+import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
+
+import static pl.kkowalewski.occupationalapi.constant.Constants.LOWER_CASE_TECHNOLOGY;
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity
@@ -19,6 +22,10 @@ public abstract class Technology extends BaseEntity {
     private LocalDate releaseDate;
     private Type type;
 
+    @JsonManagedReference
+    @OneToOne(mappedBy = LOWER_CASE_TECHNOLOGY)
+    private Developer developer;
+
     /*------------------------ METHODS REGION ------------------------*/
     public Technology() {
     }
@@ -27,6 +34,13 @@ public abstract class Technology extends BaseEntity {
         this.name = name;
         this.releaseDate = releaseDate;
         this.type = type;
+    }
+
+    public Technology(String name, LocalDate releaseDate, Type type, Developer developer) {
+        this.name = name;
+        this.releaseDate = releaseDate;
+        this.type = type;
+        this.developer = developer;
     }
 
     public String getName() {
@@ -53,34 +67,12 @@ public abstract class Technology extends BaseEntity {
         this.type = type;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Technology that = (Technology) o;
-
-        return new EqualsBuilder()
-                .appendSuper(super.equals(o))
-                .append(name, that.name)
-                .append(releaseDate, that.releaseDate)
-                .append(type, that.type)
-                .isEquals();
+    public Developer getDeveloper() {
+        return developer;
     }
 
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .appendSuper(super.hashCode())
-                .append(name)
-                .append(releaseDate)
-                .append(type)
-                .toHashCode();
+    public void setDeveloper(Developer developer) {
+        this.developer = developer;
     }
 
     @Override
@@ -90,6 +82,7 @@ public abstract class Technology extends BaseEntity {
                 .append("name", name)
                 .append("releaseDate", releaseDate)
                 .append("type", type)
+                .append("developer", developer)
                 .toString();
     }
 }

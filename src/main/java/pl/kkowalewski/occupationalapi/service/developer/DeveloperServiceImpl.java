@@ -3,8 +3,8 @@ package pl.kkowalewski.occupationalapi.service.developer;
 import org.springframework.stereotype.Service;
 import pl.kkowalewski.occupationalapi.exception.service.DeveloperNotFoundException;
 import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
-import pl.kkowalewski.occupationalapi.repository.ClientRepository;
 import pl.kkowalewski.occupationalapi.repository.DeveloperRepository;
+import pl.kkowalewski.occupationalapi.service.client.ClientService;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -16,14 +16,14 @@ import java.util.stream.StreamSupport;
 public class DeveloperServiceImpl implements DeveloperService {
 
     /*------------------------ FIELDS REGION ------------------------*/
-    private final ClientRepository clientRepository;
     private final DeveloperRepository developerRepository;
+    private final ClientService clientService;
 
     /*------------------------ METHODS REGION ------------------------*/
-    public DeveloperServiceImpl(ClientRepository clientRepository,
-                                DeveloperRepository developerRepository) {
-        this.clientRepository = clientRepository;
+    public DeveloperServiceImpl(DeveloperRepository developerRepository,
+                                ClientService clientService) {
         this.developerRepository = developerRepository;
+        this.clientService = clientService;
     }
 
     @Override
@@ -93,16 +93,25 @@ public class DeveloperServiceImpl implements DeveloperService {
 
     @Override
     public void deleteById(Long id) {
+        Developer developer = findById(id);
+        deleteDeveloperClients(developer);
         developerRepository.deleteById(id);
     }
 
     @Override
     public void delete(Developer object) {
+        Developer developer = findById(object.getId());
+        deleteDeveloperClients(developer);
         developerRepository.delete(object);
     }
 
     @Override
     public void deleteAll() {
+        clientService.deleteAll();
         developerRepository.deleteAll();
+    }
+
+    private void deleteDeveloperClients(Developer developer) {
+        developer.getClients().forEach((it) -> clientService.deleteById(it.getId()));
     }
 }
