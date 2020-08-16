@@ -87,6 +87,11 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
+    public Developer update(Developer object) {
+        return developerRepository.save(object);
+    }
+
+    @Override
     public void deleteById(Long id) {
         developerRepository.deleteById(id);
     }
@@ -101,4 +106,3 @@ public class DeveloperServiceImpl implements DeveloperService {
         developerRepository.deleteAll();
     }
 }
-    

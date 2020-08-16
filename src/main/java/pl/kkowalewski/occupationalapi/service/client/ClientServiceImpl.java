@@ -119,6 +119,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client update(Client object) {
+        return clientRepository.save(object);
+    }
+
+    @Override
     public void deleteById(Long id) {
         clientRepository.deleteById(id);
     }
@@ -133,4 +138,3 @@ public class ClientServiceImpl implements ClientService {
         clientRepository.deleteAll();
     }
 }
-    

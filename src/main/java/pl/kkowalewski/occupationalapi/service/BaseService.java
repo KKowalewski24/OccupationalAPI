@@ -10,6 +10,8 @@ public interface BaseService<T> {
 
     T save(T object);
 
+    T update(T object);
+
     void deleteById(Long id);
 
     void delete(T object);

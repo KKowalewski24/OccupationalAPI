@@ -69,6 +69,11 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
+    public Technology update(Technology object) {
+        return technologyRepository.save(object);
+    }
+
+    @Override
     public void deleteById(Long id) {
         technologyRepository.deleteById(id);
     }
@@ -83,4 +88,3 @@ public class TechnologyServiceImpl implements TechnologyService {
         technologyRepository.deleteAll();
     }
 }
-    
