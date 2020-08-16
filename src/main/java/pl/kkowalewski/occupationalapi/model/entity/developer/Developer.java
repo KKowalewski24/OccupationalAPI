@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import pl.kkowalewski.occupationalapi.model.base.Person;
 import pl.kkowalewski.occupationalapi.model.entity.client.Client;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
@@ -17,9 +18,10 @@ public class Developer extends Person {
 
     /*------------------------ FIELDS REGION ------------------------*/
     @JsonManagedReference
-    @OneToMany(mappedBy = LOWER_CASE_DEVELOPER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = LOWER_CASE_DEVELOPER)
     private Set<Client> clients;
 
+    //    todo add technology
     /*------------------------ METHODS REGION ------------------------*/
     public Developer() {
     }
