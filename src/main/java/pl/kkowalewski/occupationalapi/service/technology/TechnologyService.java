@@ -9,5 +9,6 @@ public interface TechnologyService extends BaseService<Technology> {
     Technology findByName(String name);
 
     Technology findByType(Type type);
+
+    Technology updateName(Long id, String name);
 }
-    

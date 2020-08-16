@@ -74,6 +74,14 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
+    public Technology updateName(Long id, String name) {
+        Technology technology = findById(id);
+        technology.setName(name);
+
+        return update(technology);
+    }
+
+    @Override
     public void deleteById(Long id) {
         technologyRepository.deleteById(id);
     }
