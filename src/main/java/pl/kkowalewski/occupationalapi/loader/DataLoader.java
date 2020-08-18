@@ -1,6 +1,5 @@
 package pl.kkowalewski.occupationalapi.loader;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.kkowalewski.occupationalapi.model.Type;
@@ -21,7 +20,6 @@ import java.util.HashSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -66,9 +64,12 @@ public class DataLoader implements CommandLineRunner {
     @Transactional
     @Override
     public void run(String... args) throws Exception {
-        prepareTechnology(new React("abc", LocalDate.now(), Type.FRONT_END));
-        prepareTechnology(new SpringBoot("cde", LocalDate.now(), Type.BACK_END));
-        prepareTechnology(new AspNetCore("cde", LocalDate.now(), Type.BACK_END));
+        Technology react = prepareTechnology(
+                new React("abc", LocalDate.now(), Type.FRONT_END));
+        Technology springBoot = prepareTechnology(
+                new SpringBoot("cde", LocalDate.now(), Type.BACK_END));
+        Technology aspNetCore = prepareTechnology(
+                new AspNetCore("cde", LocalDate.now(), Type.BACK_END));
 
         Developer developer1 = prepareDeveloper(new Developer("Kamil", "Kowalewski",
                 LocalDate.of(1990, 12, 24)));
@@ -84,6 +85,7 @@ public class DataLoader implements CommandLineRunner {
 
         developer1.setClients(Stream.of(client1, client2, client3, client4)
                 .collect(Collectors.toCollection(HashSet::new)));
+        developer1.setTechnology(springBoot);
 
         this.<TechnologyService>printCollection(technologyService);
         this.<ClientService>printCollection(clientService);

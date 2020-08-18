@@ -1,8 +1,5 @@
 package pl.kkowalewski.occupationalapi.model.base;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -10,9 +7,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@NoArgsConstructor
 @MappedSuperclass
 public abstract class Person extends BaseEntity {
 
@@ -22,9 +16,36 @@ public abstract class Person extends BaseEntity {
     private LocalDate birthDate;
 
     /*------------------------ METHODS REGION ------------------------*/
+    public Person() {
+    }
+
     public Person(String firstName, String lastName, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.birthDate = birthDate;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -68,4 +89,3 @@ public abstract class Person extends BaseEntity {
                 .toString();
     }
 }
-    

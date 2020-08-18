@@ -1,10 +1,6 @@
 package pl.kkowalewski.occupationalapi.model.entity.client;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import pl.kkowalewski.occupationalapi.model.base.Person;
 import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
@@ -20,19 +16,20 @@ import static pl.kkowalewski.occupationalapi.constant.Constants.LOWER_CASE_DEVEL
 import static pl.kkowalewski.occupationalapi.constant.Constants.UNDERSCORE_FK;
 import static pl.kkowalewski.occupationalapi.constant.Constants.UNDERSCORE_ID;
 
-@Getter
-@Setter
-@NoArgsConstructor
 @Entity(name = LOWER_CASE_CLIENT)
 public class Client extends Person {
 
     /*------------------------ FIELDS REGION ------------------------*/
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = LOWER_CASE_DEVELOPER + UNDERSCORE_ID,
             foreignKey = @ForeignKey(name = LOWER_CASE_DEVELOPER + UNDERSCORE_ID + UNDERSCORE_FK))
     private Developer developer;
 
     /*------------------------ METHODS REGION ------------------------*/
+    public Client() {
+    }
+
     public Client(String firstName, String lastName, LocalDate birthDate) {
         super(firstName, lastName, birthDate);
     }
@@ -42,30 +39,12 @@ public class Client extends Person {
         this.developer = developer;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Client client = (Client) o;
-
-        return new EqualsBuilder()
-                .appendSuper(super.equals(o))
-                .append(developer, client.developer)
-                .isEquals();
+    public Developer getDeveloper() {
+        return developer;
     }
 
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .appendSuper(super.hashCode())
-                .append(developer)
-                .toHashCode();
+    public void setDeveloper(Developer developer) {
+        this.developer = developer;
     }
 
     @Override
@@ -76,4 +55,3 @@ public class Client extends Person {
                 .toString();
     }
 }
-    
