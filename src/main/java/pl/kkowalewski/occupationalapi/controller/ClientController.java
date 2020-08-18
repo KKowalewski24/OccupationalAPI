@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.kkowalewski.occupationalapi.model.entity.client.Client;
@@ -41,16 +42,18 @@ public class ClientController implements BaseController<Client> {
         return clientService.findById(id);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(PATH_CLIENTS)
     @Override
-    public Client post(Client object) {
-        return null;
+    public Client post(@RequestBody Client object) {
+        return clientService.save(object);
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping(PATH_CLIENTS_PARAM_ID)
     @Override
-    public Client put(Long id, Client object) {
-        return null;
+    public Client put(@PathVariable Long id, @RequestBody Client object) {
+        return clientService.update(object);
     }
 
     @ResponseStatus(HttpStatus.OK)

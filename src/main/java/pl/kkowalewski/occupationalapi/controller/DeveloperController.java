@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.kkowalewski.occupationalapi.model.entity.developer.Developer;
@@ -41,16 +42,18 @@ public class DeveloperController implements BaseController<Developer> {
         return developerService.findById(id);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(PATH_DEVELOPERS)
     @Override
-    public Developer post(Developer object) {
-        return null;
+    public Developer post(@RequestBody Developer object) {
+        return developerService.save(object);
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping(PATH_DEVELOPERS_PARAM_ID)
     @Override
-    public Developer put(Long id, Developer object) {
-        return null;
+    public Developer put(@PathVariable Long id, @RequestBody Developer object) {
+        return developerService.update(object);
     }
 
     @ResponseStatus(HttpStatus.OK)

@@ -26,6 +26,8 @@ public class Constants {
     public static final String PATH_TECHNOLOGIES = SLASH + TECHNOLOGIES;
     public static final String PATH_TECHNOLOGIES_PARAM_ID = PATH_TECHNOLOGIES + SLASH + PARAM_ID;
 
+    public static final String RESOURCE_NOT_FOUND = "Resource Not Found";
+
     /*------------------------ METHODS REGION ------------------------*/
     private Constants() {
     }
